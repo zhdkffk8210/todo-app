@@ -170,7 +170,7 @@ button[type="submit"]:hover {
 }
 
 /* =========================
-   Calendar - Compact Version
+   Calendar
 ========================= */
 
 .calendar {
@@ -350,6 +350,65 @@ button[type="submit"]:hover {
   border-color: #cfd4da;
   cursor: not-allowed;
   box-shadow: none;
+}
+
+
+/* 버튼 묶음 */
+.todoActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 수정 버튼 (삭제 버튼 톤과 동일 구조) */
+.editBtn {
+  background: none;
+  border: none;
+  color: #4a90e2;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.editBtn:hover {
+  opacity: 0.7;
+}
+
+/* 수정 입력 */
+.editInput {
+  height: 30px;
+  padding: 4px 8px;
+  font-size: 13px;
+  border: 1px solid #cfd4da;
+  border-radius: 4px;
+}
+
+/* 저장 버튼 (addBtn 축소 버전 느낌) */
+.saveBtn {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background: #3b7ed0;
+}
+
+/* 취소 버튼 */
+.cancelBtn {
+  background: #f8f9fb;
+  border: 1px solid #cfd4da;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background: #e7f0ff;
 }
 
 /* 리스트 */
