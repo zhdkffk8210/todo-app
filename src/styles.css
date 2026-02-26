@@ -1,0 +1,416 @@
+/* =========================
+   Base
+========================= */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f1f3f6;
+  color: #2e2e2e;
+}
+
+/* =========================
+   Auth Page
+========================= */
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 380px;
+  padding: 32px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #dcdfe4;
+}
+
+.logo {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+/* 로그인 / 회원가입 토글 */
+.toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.toggle button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #cfd4da;
+  background: #f8f9fb;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.toggle .active {
+  background: #e7f0ff;
+  border-color: #4a90e2;
+  color: #1f4fa3;
+  font-weight: 500;
+}
+
+/* 입력창 통일 */
+input {
+  width: 100%;
+  padding: 12px;
+  height: 40px;
+  margin-bottom: 12px;
+  border: 1px solid #cfd4da;
+  font-size: 14px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/* 제출 버튼 */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button[type="submit"]:hover {
+  background: #3b7ed0;
+}
+
+.error {
+  color: #c0392b;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* =========================
+   Home Layout
+========================= */
+
+.home {
+  max-width: 640px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* 상단 바 */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logout {
+  background: #f8f9fb;
+  border: 1px solid #cfd4da;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.logout:hover {
+  background: #e7f0ff;
+}
+
+/* 상태 박스 */
+.infoBox {
+  background: #ffffff;
+  border: 1px solid #dcdfe4;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.errorBox {
+  background: #fff5f5;
+  border: 1px solid #f0c1c1;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #c0392b;
+}
+
+/* 프로필 박스 */
+.profileBox {
+  background: #ffffff;
+  padding: 18px;
+  border: 1px solid #dcdfe4;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.profileBox h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.profileBox p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* =========================
+   Calendar - Compact Version
+========================= */
+
+.calendar {
+  background: #ffffff;
+  border: 1px solid #dcdfe4;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.calendarHeader h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.calendarHeader button {
+  background: #f4f6f9;
+  border: 1px solid #d0d5dd;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.calendarHeader button:hover {
+  background: #e7f0ff;
+}
+
+/* 요일 */
+.weekRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.weekDay {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 0;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* 날짜 그리드 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+/* 날짜 셀 */
+.day {
+  position: relative; 
+  height: 50px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #fafafa;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  transition: all 0.15s ease;
+}
+
+.day:hover {
+  background: #eef4ff;
+}
+
+.day.empty {
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+.dayNumber {
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 2;
+}
+
+/* 오늘 */
+.today {
+  border: 1px solid #4a90e2;
+}
+
+/* 선택된 날짜 */
+.selectedDay {
+  background: #e7f0ff;
+  border: 1px solid #2f80ed;
+}
+
+/* 점 */
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dotOrange {
+  background: #f2994a;
+}
+
+.dotGreen {
+  background: #27ae60;
+}
+
+/* =========================
+   Todo Panel
+========================= */
+
+.todoPanel {
+  background: #ffffff;
+  border: 1px solid #dcdfe4;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.todoPanel h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 입력 + 추가 버튼 */
+.todoInput {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.todoInput input {
+  margin-bottom: 0;
+}
+
+.addBtn {
+  height: 40px;
+  min-width: 70px;
+  padding: 0 16px;
+  background: linear-gradient(180deg, #2f80ed 0%, #1f6fd6 100%);
+  color: #ffffff;
+  border: 1px solid #1f6fd6;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.addBtn:hover {
+  background: linear-gradient(180deg, #3a8df5 0%, #2a77db 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.addBtn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.addBtn:disabled {
+  background: #cfd4da;
+  border-color: #cfd4da;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 리스트 */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 13px;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.todoLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 완료 버튼 */
+.completeBtn {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #cfd4da;
+  background: white;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.completeBtn:hover {
+  background: #e7f0ff;
+}
+
+.completeActive {
+  background: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+/* 완료된 텍스트 */
+li.done span {
+  text-decoration: line-through;
+  color: #9aa0a6;
+}
+
+/* 삭제 버튼 */
+.deleteBtn {
+  background: none;
+  border: none;
+  color: #c0392b;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.deleteBtn:hover {
+  opacity: 0.7;
+}
