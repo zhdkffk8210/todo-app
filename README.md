@@ -7,14 +7,14 @@
 
 ## 🧱 프로젝트 구조
 
-
+```bash
 my-todo-app/
 ├── client/ # React 프론트엔드
 ├── server/ # Express 백엔드
 ├── .gitignore
 ├── package.json
 └── README.md # (이 파일)
-
+```
 
 ---
 
@@ -34,28 +34,35 @@ my-todo-app/
 ```bash
 git clone https://github.com/zhdkffk8210/todo-app.git
 cd todo-app
+```
 2) 백엔드 실행
+```bash
 cd server
 npm install
+```
 
 
 백엔드 환경 변수 설정:
-
+```bash
 MONGODB_URI=<MongoDB Atlas 연결 문자열>
 JWT_SECRET=<JWT 시크릿 키>
+```
 
 실행:
-
+```bash
 npm run dev
 
 서버는 기본적으로 http://localhost:3000에서 실행됩니다.
+```
 
 3) 프론트엔드 실행
+```bash
 cd client
 npm install
 npm run dev
 
 브라우저에서 http://localhost:5173로 접속하면 앱이 열립니다.
+```
 
 🔐 환경 변수
 서버 (server/.env)
@@ -83,7 +90,7 @@ Todo 조회 (전체 / 날짜별)
 Todo 수정 / 삭제
 
 완료 상태 토글
-
+```bash
 📁 API 요약
 Method	URL	설명
 POST	/api/auth/register	회원가입
@@ -94,6 +101,7 @@ GET	/api/todos?date=YYYY-MM-DD	날짜별 Todo 조회
 PATCH	/api/todos/:id	Todo 수정
 PATCH	/api/todos/:id/toggle	완료 토글
 DELETE	/api/todos/:id	Todo 삭제
+```
 
 🧪 테스트 가이드
 
