@@ -9,6 +9,7 @@ export default function TodoPanel({
   onUpdate,
 }) {
   const [input, setInput] = useState("");
+
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
 
@@ -19,8 +20,8 @@ export default function TodoPanel({
   }
 
   function handleEditStart(todo) {
-    setEditId(todo.id);
-    setEditText(todo.text);
+    setEditId(todo._id);
+    setEditText(todo.content);
   }
 
   function handleEditSave(id) {
@@ -45,67 +46,52 @@ export default function TodoPanel({
           onChange={(e) => setInput(e.target.value)}
           placeholder="할 일 입력"
         />
-        <button
-          className="addBtn"
-          onClick={handleAdd}
-          disabled={!input.trim()}
-        >
+        <button className="addBtn" onClick={handleAdd} disabled={!input.trim()}>
           + 추가
         </button>
       </div>
 
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id} className={todo.done ? "done" : ""}>
+          <li key={todo._id} className={todo.completed ? "done" : ""}>
             <div className="todoLeft">
               <button
                 className={`completeBtn ${
-                  todo.done ? "completeActive" : ""
+                  todo.completed ? "completeActive" : ""
                 }`}
-                onClick={() => onToggle(todo.id)}
+                onClick={() => onToggle(todo._id)}
+                aria-label="완료 토글"
               >
                 ✓
               </button>
 
-              {editId === todo.id ? (
+              {editId === todo._id ? (
                 <input
                   className="editInput"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
                 />
               ) : (
-                <span>{todo.text}</span>
+                <span>{todo.content}</span>
               )}
             </div>
 
             <div className="todoActions">
-              {editId === todo.id ? (
+              {editId === todo._id ? (
                 <>
-                  <button
-                    className="saveBtn"
-                    onClick={() => handleEditSave(todo.id)}
-                  >
+                  <button className="saveBtn" onClick={() => handleEditSave(todo._id)}>
                     저장
                   </button>
-                  <button
-                    className="cancelBtn"
-                    onClick={handleCancel}
-                  >
+                  <button className="cancelBtn" onClick={handleCancel}>
                     취소
                   </button>
                 </>
               ) : (
                 <>
-                  <button
-                    className="editBtn"
-                    onClick={() => handleEditStart(todo)}
-                  >
+                  <button className="editBtn" onClick={() => handleEditStart(todo)}>
                     수정
                   </button>
-                  <button
-                    className="deleteBtn"
-                    onClick={() => onRemove(todo.id)}
-                  >
+                  <button className="deleteBtn" onClick={() => onRemove(todo._id)}>
                     삭제
                   </button>
                 </>

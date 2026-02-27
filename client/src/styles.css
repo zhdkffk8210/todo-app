@@ -473,3 +473,38 @@ li.done span {
 .deleteBtn:hover {
   opacity: 0.7;
 }
+
+.todoActions {
+  display: flex;
+  gap: 8px;
+}
+
+.editInput {
+  height: 32px;
+  padding: 6px 10px;
+  border: 1px solid #cfd4da;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.editBtn,
+.saveBtn,
+.cancelBtn {
+  background: #f8f9fb;
+  border: 1px solid #cfd4da;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.saveBtn {
+  border-color: #4a90e2;
+  color: #1f4fa3;
+  background: #e7f0ff;
+}
+
+.cancelBtn:hover,
+.editBtn:hover {
+  background: #e7f0ff;
+}

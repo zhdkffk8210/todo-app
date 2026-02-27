@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { loginApi, registerApi } from "../api/auth";
 
 function isValidEmail(email) {
   return /\S+@\S+\.\S+/.test(email);
@@ -10,7 +11,7 @@ export default function AuthPage({ onLogin }) {
     email: "",
     password: "",
     name: "",
-    bio: "",
+    bio: "", // UI용(백엔드에 안 보냄)
   });
 
   const [loading, setLoading] = useState(false);
@@ -25,18 +26,15 @@ export default function AuthPage({ onLogin }) {
     e.preventDefault();
     setError("");
 
-    // 🔥 공통 유효성 검사
+    // ✅ 프론트 유효성(서버 규칙과 맞춤)
     if (!isValidEmail(form.email)) {
       setError("올바른 이메일 형식이 아닙니다.");
       return;
     }
-
-    if (form.password.length < 6) {
-      setError("비밀번호는 최소 6자 이상이어야 합니다.");
+    if (form.password.length < 8) {
+      setError("비밀번호는 최소 8자 이상이어야 합니다.");
       return;
     }
-
-    // 🔥 회원가입일 때 추가 검사
     if (!isLogin && !form.name.trim()) {
       setError("이름을 입력해주세요.");
       return;
@@ -45,15 +43,41 @@ export default function AuthPage({ onLogin }) {
     setLoading(true);
 
     try {
-      // 실제 API 붙일 자리
-      await new Promise((res) => setTimeout(res, 500));
+      let data;
 
+      if (isLogin) {
+        data = await loginApi({
+          email: form.email,
+          password: form.password,
+        });
+      } else {
+        data = await registerApi({
+          email: form.email,
+          password: form.password,
+          name: form.name,
+        });
+      }
+
+      // ✅ 토큰/유저 저장(로그인 유지)
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      // ✅ 앱 상태 업데이트
       onLogin({
-        name: form.name || "사용자",
+        ...data.user,
+        // bio는 서버에 없으니 UI용으로 남기고 싶으면 여기에서 세팅
         bio: form.bio || "자기소개 없음",
       });
-    } catch {
-      setError("요청 실패");
+    } catch (err) {
+      const status = err?.response?.status;
+      const resData = err?.response?.data;
+
+      // 서버: { errors: [{ msg, param }] } 형태(회원가입 검증 실패)
+      if (status === 400 && resData?.errors?.length) {
+        setError(resData.errors[0].msg || "요청 실패");
+      } else {
+        setError(resData?.message || "요청 실패");
+      }
     } finally {
       setLoading(false);
     }
@@ -100,7 +124,7 @@ export default function AuthPage({ onLogin }) {
           <input
             name="password"
             type="password"
-            placeholder="비밀번호 (6자 이상)"
+            placeholder="비밀번호 (8자 이상)"
             value={form.password}
             onChange={handleChange}
             required
@@ -117,7 +141,7 @@ export default function AuthPage({ onLogin }) {
               />
               <input
                 name="bio"
-                placeholder="자기소개"
+                placeholder="자기소개(선택)"
                 value={form.bio}
                 onChange={handleChange}
               />
