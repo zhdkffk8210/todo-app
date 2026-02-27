@@ -72,6 +72,18 @@ export default function AuthPage({ onLogin }) {
       const status = err?.response?.status;
       const resData = err?.response?.data;
 
+      // ✅ 원인 확정용 로그 (개발 중만)
+      console.log("[AUTH ERROR]", {
+        status,
+        resData,
+        request: {
+          isLogin,
+          email: form.email,
+          passwordLen: form.password?.length,
+          name: form.name,
+        },
+      });
+
       // 서버: { errors: [{ msg, param }] } 형태(회원가입 검증 실패)
       if (status === 400 && resData?.errors?.length) {
         setError(resData.errors[0].msg || "요청 실패");
